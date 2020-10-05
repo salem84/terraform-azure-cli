@@ -56,6 +56,9 @@ jobs:
       - name: Push image to registry
         run: docker push ${ORGANIZATION}/${IMAGE_NAME}:${IMAGE_RELEASE_TAG}
 
+      - name: Push image to Github Packages registry
+        run: docker push docker.pkg.github.com/$GITHUB_REPOSITORY/$IMAGE_NAME:$IMAGE_TAG
+
       - name: Save image
         run: docker image save -o ${IMAGE_NAME}-${IMAGE_RELEASE_TAG}.tar ${ORGANIZATION}/${IMAGE_NAME}:${IMAGE_RELEASE_TAG}
 
